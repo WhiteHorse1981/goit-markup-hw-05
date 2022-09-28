@@ -223,11 +223,11 @@ color: #2196F3;
     color: var(--hero-text-color);
 }
 
-.hero button, .filter-button button {
+.modal-btn, .hero-btn, .filter-button button {
     cursor: pointer;
 }
 
-.hero button {
+.hero-btn {
     font-weight: 700;
     font-size: 16px;
     line-height: 1.87;
@@ -241,8 +241,8 @@ color: #2196F3;
     padding: 10px 32px; 
 }
 
-.hero button:hover,
-.hero button:focus 
+.hero-btn:hover,
+.hero-btn:focus 
 {
     background-color: var(--button-activ-color);
 }
@@ -254,6 +254,48 @@ color: #2196F3;
     background-size: cover;
     max-width: 1600px;
 
+}
+
+/* backdrop  modal*/
+.backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.backdrop.is-hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.modal {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    min-width: 528px;
+    min-height: 581px;
+
+    background-color: var(--primary-backgraund-color);
+
+    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12), 0px 1px 1px rgba(0, 0, 0, 0.14), 0px 2px 1px rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+}
+
+.modal-btn {
+    display: flex;
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    
+    padding: 6px;
+    border-radius: 50%;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    background-color: var(--primary-backgraund-color);
 }
 
 /* main секція Рішення для бізнесу */
@@ -340,7 +382,7 @@ color: #2196F3;
     display: block;
 }
 
-.examples .item {
+.examples-img-container {
     position: relative;
 }
 
