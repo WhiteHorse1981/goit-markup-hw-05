@@ -120,11 +120,11 @@ header .site-nav,  header .contacts-header {
     margin-right: 50px;
 }
 
-.item-current {
+.current {
     position: relative;
 }
 
-.site-nav .item-current::after {
+.site-nav .current::after {
     position: absolute;
     bottom: 0;
     left: 0;
@@ -158,6 +158,7 @@ header .site-nav,  header .contacts-header {
 
 .contacts-header a:hover {
     fill: var(--accent-color);
+    transition: fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .link, .logo {
@@ -167,6 +168,7 @@ header .site-nav,  header .contacts-header {
 
 .link:hover, .link:focus {
     color: var(--accent-color);
+    transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .site-nav .link.current{
@@ -196,6 +198,7 @@ color: #2196F3;
 .logo:hover,
 .logo:focus {
     color: var(--accent-color);
+    transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* main секція Герой */
@@ -207,8 +210,6 @@ color: #2196F3;
 
 .hero {
     background-color: var(--footer-hero-background-color);
-    text-align: center;
-    padding: 200px 0px;
 }
 
 .hero-title {
@@ -244,6 +245,7 @@ color: #2196F3;
 .hero-btn:focus 
 {
     background-color: var(--button-activ-color);
+    transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .bcg {
@@ -254,6 +256,8 @@ color: #2196F3;
     max-width: 1600px;
     margin-left: auto;
     margin-right: auto;
+    text-align: center;
+    padding: 200px 0px;
 }
 
 /* backdrop  modal*/
@@ -263,12 +267,15 @@ color: #2196F3;
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.5);
+    transition: transform 500ms ease-in-out 500ms, 500ms;
 }
 
 .backdrop.is-hidden {
+    visibility: hidden;
     opacity: 0;
-    pointer-events: none;
+    pointer-events: none; 
+    transform: scale(0.8) rotate(180deg) translate(-80px, 23px) skew(-20deg, -41deg);
 }
 
 .modal {
@@ -285,6 +292,7 @@ color: #2196F3;
     box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12), 0px 1px 1px rgba(0, 0, 0, 0.14), 0px 2px 1px rgba(0, 0, 0, 0.2);
     border-radius: 4px;
 }
+
 
 .modal-btn {
     display: flex;
@@ -481,6 +489,7 @@ color: #2196F3;
 .social-link .link:hover, .social-link .link:focus {
     background-color: var(--accent-color);
     color: #FFFFFF;
+    transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .social-link:not(:last-child) {
@@ -519,10 +528,12 @@ color: #2196F3;
     display: flex;
     padding: 16px 32px;
     color: var(--social-icons-color);
+    transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .customer .link:hover, .customer .link:focus {
     color: var(--accent-color);
+    transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .customer svg {
@@ -531,6 +542,7 @@ color: #2196F3;
 
 .customer:hover, .customer:focus {
     border: 1px solid #2196F3;
+    transition: border 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 
@@ -573,6 +585,7 @@ color: #2196F3;
 
 .logo:hover, .logo:focus {
     color: var(--accent-color);
+    transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .address, .email {
@@ -620,7 +633,6 @@ color: #2196F3;
     text-align: center;
     letter-spacing: 0.03em;
     color: var(--title-text-color);
-
 }
 
 .filter-button button:hover,
@@ -628,6 +640,7 @@ color: #2196F3;
 {
     color: var(--hero-text-color);
     background-color: var(--accent-color);
+    transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* projects */
@@ -677,6 +690,7 @@ color: #2196F3;
 
 .projects .item:hover {
     box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.12), 0px 4px 4px rgba(0, 0, 0, 0.06), 1px 4px 6px rgba(0, 0, 0, 0.16);
+    transition: box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 
@@ -708,24 +722,9 @@ color: #2196F3;
     padding-bottom: 94px;
 }
 
-/* .projects .item {
-    position: relative;
-} */
-
 .projects-img {
     position: relative;
-}
-
-.projects-popup-text {
-    opacity: 0;
-}
-
-.projects-img:hover .projects-popup-text {
-    opacity: 1;
-}
-
-.projects-img:hover::before {
-    opacity: 0.9;
+    overflow: hidden;
 }
 
 .projects-popup-text {
@@ -745,16 +744,24 @@ color: #2196F3;
     letter-spacing: 0.03em;
 }
 
-.projects-img::before {
+.projects-overlay {
     position: absolute;
-    content: '';
-    display: inline-block;
     bottom: 0;
     left: 0;
     width: 100%;
     height: 100%;
     background-color: var(--accent-color);
-    opacity: 0;
+    transform: translateY(100%);
+    transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.projects .item:hover .projects-overlay {
+    opacity: 0.9;
+}
+
+.projects .item:hover .projects-overlay {
+    transform: translateY(0);
+    transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 
